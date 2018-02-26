@@ -27,7 +27,7 @@ def cbind(tbl1, tbl2, sep=' '):
 @click.option('--c2', default=0, type=int, help='name column for table 2')
 @click.argument('table1')
 @click.argument('table2')
-def cbind_tables(c1, c2, table1, table2):
+def main(c1, c2, table1, table2):
     tbl1 = parse_table(table1, namecol=c1)
     tbl2 = parse_table(table2, namecol=c2)
     tbl = cbind(tbl1, tbl2)
@@ -36,4 +36,4 @@ def cbind_tables(c1, c2, table1, table2):
 
 
 if __name__ == '__main__':
-    cbind_tables()
+    main()

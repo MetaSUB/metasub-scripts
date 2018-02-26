@@ -19,7 +19,8 @@ setuptools.setup(
 
     entry_points={
         'console_scripts': [
-            'airtable-sync=airtable-sync.airtable-uploader:main'
+            'airtable-sync=airtable-sync.airtable_uploader:main',
+            'cbind-tables=cbind_tables.airtable_uploader:main'
         ]
     },
 
