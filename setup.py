@@ -10,8 +10,8 @@ setuptools.setup(
 
     description="Scripts for various metasub related things",
 
-    packages=['airtable-sync'],
-    package_dir={'airtable-sync': 'airtable-sync'},
+    packages=['airtablesync'],
+    package_dir={'airtablesync': 'airtablesync'},
 
     install_requires=[
         'click==6.7'
@@ -19,8 +19,8 @@ setuptools.setup(
 
     entry_points={
         'console_scripts': [
-            'airtable-sync=airtable-sync.airtable_uploader:main',
-            'cbind-tables=cbind_tables.airtable_uploader:main'
+            'airtable-sync=airtablesync.airtable_uploader:main',
+            'cbind-tables=airtablesync.cbind_tables:main'
         ]
     },
 

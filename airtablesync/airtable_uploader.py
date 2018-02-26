@@ -1,8 +1,8 @@
-import airtable
+from airtable import airtable
 from time import sleep
 from os.path import basename, isfile
-from .util_parsers import *
-
+from airtablesync.util_parsers import *
+import click
 
 BASE_ID = 'appnanDiqnz1N0cUy'
 TABLE_ID = 'Table 1'
@@ -40,7 +40,7 @@ def create_data(filepath,
 @click.command()
 @click.argument('api_key')
 @click.argument('tblfile')
-@click.argument('namefiles')
+@click.argument('namefiles', nargs=-1)
 def main(api_key, tblfile, namefiles):
     tripToSL, slToTrip = parse_namefiles(namefiles)
     uploader = create_uploader(api_key)

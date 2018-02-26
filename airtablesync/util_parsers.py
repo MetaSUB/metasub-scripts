@@ -8,6 +8,12 @@ def parse_data_table(tablefile):
             except KeyError:
                 pass
 
+def get_or_default(tbl, key, default=''):
+    try:
+        return tbl[key]
+    except KeyError:
+        return default
+            
 
 def parse_namefiles(namefiles):
     tripToSL, slToTrip = {}, {}
@@ -24,7 +30,7 @@ def parse_one_namefile(namefile):
             tkns = line.strip().split()
             try:
                 yield tkns[2], tkns[3]
-            except KeyError:
+            except IndexError:
                 pass
 
 
@@ -58,7 +64,7 @@ def get_sl_name(filename, tripToSL):
     if 'SL' in base:
         return base
     else:
-        return tripToSL[base]
+        return get_or_default(tripToSL, base)
 
 
 def get_trip_name(filename, slToTrip):
@@ -70,6 +76,6 @@ def get_trip_name(filename, slToTrip):
     if base is None:
         return ''
     if 'SL' in base:
-        return slToTrip[base]
+        return get_or_default(slToTrip, base)
     else:
         return base

@@ -7,6 +7,7 @@ def parse_table(tableFName, namecol=0, sep=' '):
         for line in tbl:
             line = line.strip()
             tkns = line.split(sep)
+            tkns = [tkn for tkn in tkns if len(tkn) > 0]
             name = tkns[namecol]
             out[name] = line
     return out
