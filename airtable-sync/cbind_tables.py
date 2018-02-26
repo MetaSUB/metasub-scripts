@@ -17,8 +17,11 @@ def cbind(tbl1, tbl2, sep=' '):
     keys |= set(tbl2.keys())
     out = []
     for key in keys:
-        l1, l2 = tbl1[key], tbl2[key]
-        out.append(l1 + sep + l2)
+        try:
+            l1, l2 = tbl1[key], tbl2[key]
+            out.append(l1 + sep + l2)
+        except KeyError:
+            pass
     return out
 
 
