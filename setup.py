@@ -20,7 +20,10 @@ setuptools.setup(
     entry_points={
         'console_scripts': [
             'airtable-sync=airtablesync.airtable_uploader:main',
-            'cbind-tables=airtablesync.cbind_tables:main'
+            'cbind-tables=airtablesync.cbind_tables:main',
+            'parse-plate-files=inbound_outbound_parsing.cli:main',
+            'parse-qiagen-files=inbound_outbound_parsing.parse_qiagen:main',
+            'airtable-upload-plate-files=inbound_outbound_parsing.airtable_upload:main'
         ]
     },
 
