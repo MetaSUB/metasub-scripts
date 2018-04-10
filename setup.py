@@ -23,7 +23,8 @@ setuptools.setup(
             'cbind-tables=airtablesync.cbind_tables:main',
             'parse-plate-files=inbound_outbound_parsing.cli:main',
             'parse-qiagen-files=inbound_outbound_parsing.parse_qiagen:main',
-            'airtable-upload-plate-files=inbound_outbound_parsing.airtable_upload:main'
+            'airtable-upload-plate-files=inbound_outbound_parsing.airtable_upload:main',
+            'airtable-upload-rack-status=airtablesync.upload_rack_status_to_airtable:main'
         ]
     },
 

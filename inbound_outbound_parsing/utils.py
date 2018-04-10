@@ -1,13 +1,17 @@
+from os.path import dirname
+
+
+city_name_table = None
 
 def parse_name_table_file():
-    table_file_name = '../city_names.csv'
+    table_file_name = dirname(__file__) + '/../city_names.csv'
     with open(table_file_name) as tf:
         tf.readline()
         city_name_table = {}
         for line in tf:
             tkns = line.strip().split(',')
             if len(tkns) == 2:
-                city_name, country_name = tkns[0], tkns[1]
+                city_name, country_name = tkns[0].lower(), tkns[1].lower()
                 try:
                     city_name_table[city_name].add(country_name)
                 except KeyError:
@@ -18,16 +22,17 @@ def parse_name_table_file():
 
 
 def parse_name_table():
-    if 'city_name_table' in globals():  # this is a dirty hack, forgive me
+    global city_name_table
+    if city_name_table is not None:  # this is a dirty hack, forgive me
         return city_name_table
     city_name_table = parse_name_table_file()
-    global city_name_table
+    #global city_name_table
     return city_name_table
 
 
 def validate_city_names(rackname):
     city_tbl = parse_name_table()
-    tkns = rackname.split('_')
+    tkns = [tkn.lower() for tkn in rackname.split('_')]
 
     city_name = None
     for tkn in tkns:
@@ -35,6 +40,9 @@ def validate_city_names(rackname):
             city_name = tkn
     if city_name is None:
         raise AssertionError('No valid city name in {}'.format(rackname))
+
+    if len(tkns) == 1:
+        return rackname
 
     country_name = None
     for tkn in tkns:
